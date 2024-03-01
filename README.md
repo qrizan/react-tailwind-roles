@@ -4,12 +4,7 @@
 
 https://github.com/qrizan/laravel-swagger-roles
 
-### setup
-
-#### copy .env
-> cp .env.example .env
-
-#### api configuration
+#### api configuration .env
 ```
 VITE_BASE_URL=http://localhost:8000
 ```
