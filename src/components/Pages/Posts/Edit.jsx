@@ -83,7 +83,7 @@ export default function PostEdit() {
     formData.append("title", title);
     formData.append("category_id", categoryID);
     formData.append("content", contentState);
-    formData.append("_method", "PUT");
+    formData.append("_method", "PATCH");
 
     try {
       const response = await api.post(`/api/admin/posts/${id}`, formData, {

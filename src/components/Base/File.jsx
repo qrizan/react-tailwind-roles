@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 const File = (props) => {
   const { onChange, accept, refFile } = props;
   return (
-    <label className="block">
       <input
         ref={refFile}
         type="file"
@@ -14,7 +13,7 @@ const File = (props) => {
             file:border-0 file:text-sm file:font-semibold 
             file:bg-gray-100 file:text-gray-600 hover:file:bg-gray-100 cursor-pointer"
       />
-    </label>
+    
   );
 };
 

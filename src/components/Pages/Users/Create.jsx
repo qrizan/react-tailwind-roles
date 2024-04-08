@@ -156,7 +156,7 @@ export default function UserCreate() {
           <div className="w-1/2 p-4">
             <legend>Roles</legend>
 
-            <div className="">
+            <div>
               {roles.map((role) => (
                 <div key={Math.random()}>
                   <Checkbox

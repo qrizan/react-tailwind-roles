@@ -104,15 +104,15 @@ export default function PostCreate() {
       <form onSubmit={storePost}>
         <div className="py-2 w-1/2">
           <Input
-            htmlFor="name"
-            label="Name"
+            htmlFor="title"
+            label="Title"
             type="text"
-            name="name"
+            name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter Role Name"
+            placeholder="Enter Title"
           />
-          {errors.name && <div className="alert-input">{errors.name[0]}</div>}
+          {errors.title && <div className="alert-input">{errors.title[0]}</div>}
         </div>
         <div className="my-2">
           <File
