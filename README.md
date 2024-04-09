@@ -1,4 +1,4 @@
-## New Article Admin Panel
+## News Article Admin Panel
 
 #### built with
 
