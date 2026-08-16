@@ -1,0 +1,40 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm audit
+
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: pip install semgrep==1.173.0
+      - run: semgrep scan --config auto --error
+
+  trivy-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # No --target flag: the Dockerfile's final stage has no `AS` name,
+      # so the default build already resolves to it.
+      - run: docker build -t react-tailwind-roles:latest .
+      - uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
+        with:
+          image-ref: react-tailwind-roles:latest
+          format: table
+          exit-code: '1'
+          severity: CRITICAL,HIGH
